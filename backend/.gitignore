@@ -1,0 +1,2 @@
+node_modules
+#.env (IN REAL CONTEXT, .env IS PUT IN GITIGNORE)
