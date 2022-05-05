@@ -4,18 +4,18 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports.signUp = async (req, res) => {
-    const {pseudo, email, password} = req.body;
+    const {first_name, last_name, phone, email, password} = req.body;
     const salt = await bcrypt.genSalt(10);
     const cryptedPassword = await bcrypt.hash(password, salt);
-    const sql = `INSERT INTO users (pseudo, email, password) VALUES (?, ?, ?)`;
-    db.query(sql, [pseudo, email, cryptedPassword], (err, result) => {
+    const sql = `INSERT INTO users (first_name, last_name, phone, email, password) VALUES (?, ?, ?, ?, ?)`;
+    db.query(sql, [first_name, last_name, phone, email, cryptedPassword], (err, result) => {
         if (err) {
             console.log(err);
             res.status(400).json({message: 'Cette adresse mail est déjà utilisée'});
         }
         else if (!validator.isEmail(email)) {
-            const sql = `DELETE FROM users WHERE pseudo=? AND email=? AND password=?`;
-            db.query(sql, [pseudo, email, cryptedPassword], (err, result) => {
+            const sql = `DELETE FROM users WHERE first_name=? AND last_name=? AND phone=? AND email=? AND password=?`;
+            db.query(sql, [first_name, last_name, phone, email, cryptedPassword], (err, result) => {
                 if (err) {
                     console.log(err);
                 }
@@ -26,8 +26,8 @@ module.exports.signUp = async (req, res) => {
             res.status(400).json({message: 'Rentrez une adresse email valide'});
         }
         else if (password.length < 6) {
-            const sql = `DELETE FROM users WHERE pseudo=? AND email=? AND password=?`;
-            db.query(sql, [pseudo, email, cryptedPassword], (err, result) => {
+            const sql = `DELETE FROM users WHERE first_name=? AND last_name=? AND phone=? AND email=? AND password=?`;
+            db.query(sql, [first_name, last_name, phone, email, cryptedPassword], (err, result) => {
                 if (err) {
                     console.log(err);
                 }
