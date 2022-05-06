@@ -8,10 +8,8 @@ const App = () => {
 
 	useEffect(() => {
 		axios.get(`${process.env.REACT_APP_API_URL}/api/jwtid`, {withCredentials: true})
-			.then((res) => {
-				setUid(res.data.myID);
-			})
-			.catch((err) => console.log(err));
+			.then(res => setUid(res.data.myID))
+			.catch(err => console.log(err));
 	}, [uid]);
 
 	return (
