@@ -1,8 +1,10 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const jwt = require('jsonwebtoken');
 
 const rateLimit = require('./middleware/rateLimit.middleware');
+const auth = require('./middleware/auth.middleware');
 
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
@@ -25,5 +27,12 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/space', spaceRoutes);
+
+app.get('/api/jwtid', auth, (req, res) => {
+    const token = req.cookies.jwt;
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const myID = decodedToken.id;
+    res.status(200).json({myID});
+});
 
 module.exports = app;
