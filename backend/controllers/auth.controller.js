@@ -11,7 +11,19 @@ module.exports.signUp = async (req, res) => {
     db.query(sql, [first_name, last_name, phone, email, cryptedPassword], (err, result) => {
         if (err) {
             console.log(err);
-            res.status(400).json({message: 'Cette adresse mail est déjà utilisée'});
+            res.status(400).json({errorEmail: 'Cette adresse mail est déjà utilisée', errorPassword: '', errorPhone: ''});
+        }
+        else if (!validator.isMobilePhone(phone)) {
+            const sql = `DELETE FROM users WHERE first_name=? AND last_name=? AND phone=? AND email=? AND password=?`;
+            db.query(sql, [first_name, last_name, phone, email, cryptedPassword], (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result);
+                }
+            });
+            res.status(400).json({errorPhone: 'Rentrez un numéro de téléphone valide', errorEmail: '', errorPassword: ''});
         }
         else if (!validator.isEmail(email)) {
             const sql = `DELETE FROM users WHERE first_name=? AND last_name=? AND phone=? AND email=? AND password=?`;
@@ -23,7 +35,7 @@ module.exports.signUp = async (req, res) => {
                     console.log(result);
                 }
             });
-            res.status(400).json({message: 'Rentrez une adresse email valide'});
+            res.status(400).json({errorEmail: 'Rentrez une adresse email valide', errorPassword: '', errorPhone: ''});
         }
         else if (password.length < 6) {
             const sql = `DELETE FROM users WHERE first_name=? AND last_name=? AND phone=? AND email=? AND password=?`;
@@ -35,7 +47,7 @@ module.exports.signUp = async (req, res) => {
                     console.log(result);
                 }
             });
-            res.status(400).json({message: 'Le mot de passe doit contenir au moins 6 caractères'});
+            res.status(400).json({errorPassword: 'Le mot de passe doit contenir au moins 6 caractères', errorEmail: '', errorPhone: ''});
         }
         else {
             res.status(201).json(result);
@@ -59,12 +71,12 @@ module.exports.signIn = (req, res) => {
             bcrypt.compare(password, result[0].password)
                 .then(valid => {
                     if (!valid) {
-                        res.status(400).json({message: 'Mot de passe incorrect !'});
+                        res.status(400).json({errorEmail: 'Mot de passe incorrect !', errorPassword: '', errorPhone: ''});
                     }
                     else {
                         const token = createToken(result[0].id);
                         res.cookie('jwt', token, {httpOnly: true, maxAge});
-                        res.status(200).json({message: 'Mot de passe correct !'});
+                        res.status(200).json({errorPassword: 'Mot de passe correct !', errorEmail: '', errorPhone: ''});
                     }
                 })
                 .catch(err => res.status(400).json({err}));

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UidContext } from '../components/AppContext';
+import { logUser } from '../features/user.slice';
 
 
 const Home = () => {
@@ -18,10 +19,10 @@ const Home = () => {
                 <div className="home-userNotConnected">
                     <h1>Parkmanager corp</h1>
                     <div className="buttons">
-                        <NavLink  end to='/profil'>
+                        <NavLink onClick={() => dispatch(logUser(true))} end to='/profil'>
                             <button>S'inscrire</button>
                         </NavLink>
-                        <NavLink  end to='/profil'>
+                        <NavLink onClick={() => dispatch(logUser(false))} end to='/profil'>
                             <button>Se connecter</button>
                         </NavLink>
                     </div>
