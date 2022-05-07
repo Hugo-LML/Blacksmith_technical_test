@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "poppins";
+    src: url(../assets/fonts/poppins/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: "lato";
+    src: url(../assets/fonts/lato/Lato-Regular.ttf);
+}
+
+$font-title: "poppins", sans-serif;
+$font-text: "lato", sans-serif;
+
+$color-1: #4D77FF;
+$color-2: #56BBF1;
+$color-3: #282e43;
+
+$breakpoints: (tablet: 992px, phone: 768px);

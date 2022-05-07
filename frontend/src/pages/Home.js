@@ -9,17 +9,26 @@ const Home = () => {
     const dispatch = useDispatch();
 
     return (
-        <>
+        <div className='main'>
             {uid ? (
                 <div className="home-userConnected">
                     <h1>User connected</h1>
                 </div>
             ) : (
                 <div className="home-userNotConnected">
-                    <h1>User not connected</h1>
+                    <h1>Parkmanager corp</h1>
+                    <div className="buttons">
+                        <NavLink  end to='/profil'>
+                            <button>S'inscrire</button>
+                        </NavLink>
+                        <NavLink  end to='/profil'>
+                            <button>Se connecter</button>
+                        </NavLink>
+                    </div>
+                    <img className='background' src="./img/parking.jpg" alt="background" />
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
