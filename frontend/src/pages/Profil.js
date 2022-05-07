@@ -5,7 +5,6 @@ import { UidContext } from '../components/AppContext';
 import Log from '../components/Log/Log';
 import { getUser, getUsers } from '../features/user.slice';
 
-
 const Profil = () => {
     const uid = useContext(UidContext);
     const dispatch = useDispatch();
@@ -14,13 +13,13 @@ const Profil = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/user/${uid}`, {withCredentials: true})
         .then(res => {
             dispatch(getUser(res.data));
-        }) 
+        })
         .catch(err => console.log(err));
 
     axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
         .then(res => {
             dispatch(getUsers(res.data));
-        }) 
+        })
         .catch(err => console.log(err));
 
     return (

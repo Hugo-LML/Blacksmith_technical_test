@@ -1,0 +1,22 @@
+.logout {
+    color: $color-1;
+    text-decoration: none;
+    outline: 1px solid $color-1;
+    outline-offset: -1px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+    font-family: $font-title;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+        box-shadow: $shadow;
+    }
+}
+
+.logout-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    @include filterColor;
+}

@@ -30,7 +30,7 @@ const Log = (props) => {
 
     return (
         <div className="profil-body">
-            <h1>Parkmanager corp</h1>
+            <h1>Parkmanager Corp</h1>
             <div className='form-auth'>
                 <ul>
                     <li onClick={handleModals} id="register">S'inscrire</li>

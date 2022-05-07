@@ -1,3 +1,7 @@
+@mixin filterColor {
+    filter: invert(44%) sepia(49%) saturate(4905%) hue-rotate(215deg) brightness(103%) contrast(103%);
+}
+
 @mixin tablet-format {
     @media screen and (max-width: map-get($breakpoints, tablet)) {
         @content;

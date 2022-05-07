@@ -68,18 +68,23 @@ module.exports.signIn = (req, res) => {
             res.status(400).json({err});
         }
         else {
-            bcrypt.compare(password, result[0].password)
-                .then(valid => {
-                    if (!valid) {
-                        res.status(400).json({errorEmail: 'Mot de passe incorrect !', errorPassword: '', errorPhone: ''});
-                    }
-                    else {
-                        const token = createToken(result[0].id);
-                        res.cookie('jwt', token, {httpOnly: true, maxAge});
-                        res.status(200).json({errorPassword: 'Mot de passe correct !', errorEmail: '', errorPhone: ''});
-                    }
-                })
-                .catch(err => res.status(400).json({err}));
+            if (result[0]) {
+                bcrypt.compare(password, result[0].password)
+                    .then(valid => {
+                        if (!valid) {
+                            res.status(400).json({errorPassword: 'Mot de passe incorrect !', errorEmail: '', errorPhone: ''});
+                        }
+                        else {
+                            const token = createToken(result[0].id);
+                            res.cookie('jwt', token, {httpOnly: true, maxAge});
+                            res.status(200).json({errorPassword: '', errorEmail: '', errorPhone: ''});
+                        }
+                    })
+                    .catch(err => res.status(400).json({err}));
+            }
+            else {
+                res.status(400).json({errorEmail: 'Adresse email incorrecte !', errorPassword: '', errorPhone: ''});
+            }
         }
     });
 }

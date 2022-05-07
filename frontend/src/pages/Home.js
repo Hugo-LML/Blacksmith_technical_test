@@ -4,32 +4,33 @@ import { NavLink } from 'react-router-dom';
 import { UidContext } from '../components/AppContext';
 import { logUser } from '../features/user.slice';
 
-
 const Home = () => {
     const uid = useContext(UidContext);
     const dispatch = useDispatch();
 
     return (
-        <div className='main'>
+        <>
             {uid ? (
                 <div className="home-userConnected">
                     <h1>User connected</h1>
                 </div>
             ) : (
-                <div className="home-userNotConnected">
-                    <h1>Parkmanager corp</h1>
-                    <div className="buttons">
-                        <NavLink onClick={() => dispatch(logUser(true))} end to='/profil'>
-                            <button>S'inscrire</button>
-                        </NavLink>
-                        <NavLink onClick={() => dispatch(logUser(false))} end to='/profil'>
-                            <button>Se connecter</button>
-                        </NavLink>
+                <div className='main'>
+                    <div className="home-userNotConnected">
+                        <h1>Parkmanager Corp</h1>
+                        <div className="buttons">
+                            <NavLink onClick={() => dispatch(logUser(true))} end to='/profil'>
+                                <button>S'inscrire</button>
+                            </NavLink>
+                            <NavLink onClick={() => dispatch(logUser(false))} end to='/profil'>
+                                <button>Se connecter</button>
+                            </NavLink>
+                        </div>
+                        <img className='background' src="./img/parking.jpg" alt="background" />
                     </div>
-                    <img className='background' src="./img/parking.jpg" alt="background" />
                 </div>
             )}
-        </div>
+        </>
     );
 };
 
