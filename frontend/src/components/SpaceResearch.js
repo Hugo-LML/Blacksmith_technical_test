@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getMySpace, getSpace } from '../features/space.slice';
 import { getUser, getUsers } from '../features/user.slice';
 import { UidContext } from './AppContext';
 
@@ -11,14 +12,19 @@ const SpaceResearch = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/user`, {withCredentials: true})
-            .then(res => {
-                dispatch(getUsers(res.data));
-                console.log(usersData);
-            })
+            .then(res => dispatch(getUsers(res.data)))
             .catch(err => console.log(err));
 
         axios.get(`${process.env.REACT_APP_API_URL}/api/user/${uid}`, {withCredentials: true})
             .then(res => dispatch(getUser(res.data)))
+            .catch(err => console.log(err));
+        
+        axios.get(`${process.env.REACT_APP_API_URL}/api/space`, {withCredentials: true})
+            .then(res => dispatch(getSpace(res.data)))
+            .catch(err => console.log(err));
+
+        axios.get(`${process.env.REACT_APP_API_URL}/api/space/findSpaceByUser/${uid}`, {withCredentials: true})
+            .then(res => dispatch(getMySpace(res.data)))
             .catch(err => console.log(err));
 
     }, [dispatch, uid]);

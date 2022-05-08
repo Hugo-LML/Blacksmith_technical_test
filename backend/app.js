@@ -29,6 +29,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/space', spaceRoutes);
 
 app.get('/api/jwtid', auth, (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     const token = req.cookies.jwt;
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
     const myID = decodedToken.id;
