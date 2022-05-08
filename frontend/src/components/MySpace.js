@@ -13,7 +13,7 @@ const MySpace = () => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/space/findSpaceByUser/${uid}`, {withCredentials: true})
             .then(res => dispatch(getMySpace(res.data)))
             .catch(err => console.log(err));
-    })
+    }, [])
 
     return (
         <div className='mySpace-container'>
