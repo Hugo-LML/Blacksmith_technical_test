@@ -47,17 +47,42 @@ module.exports.updateSpace = (req, res) => {
             res.status(400).json({err});
         }
         else {
-            if (result[0]) {
+            if (result[0] && result[0].id != id) {
                 res.status(400).json({message: 'Vous êtes déjà garé autre part dans le parking'});
             }
             else {
-                const sqlUpdate = `UPDATE spaces SET availability=?, occupation_time=?, user_id=? WHERE id=?`;
-                db.query(sqlUpdate, [availability, occupation_time, user_id, id], (err, result) => {
+                const sqlCheck = `SELECT * FROM spaces WHERE id=?`;
+                db.query(sqlCheck, [id], (err, result) => {
                     if (err) {
                         res.status(400).json({err});
                     }
                     else {
-                        res.status(200).json(result);
+                        if (result[0] && result[0].availability === 0 && result[0].user_id != user_id) {
+                            res.status(400).json({message: 'Cette place est déjà réservée'});
+                        }
+                        else {
+                            const sqlUpdate = `UPDATE spaces SET availability=?, occupation_time=?, user_id=? WHERE id=?`;
+                            if (result[0] && result[0].user_id === null) {
+                                db.query(sqlUpdate, [availability, occupation_time, user_id, id], (err, result) => {
+                                    if (err) {
+                                        res.status(400).json({err});
+                                    }
+                                    else {
+                                        res.status(200).json(result);
+                                    }
+                                });
+                            }
+                            else if (result[0] && result[0].user_id === user_id) {
+                                db.query(sqlUpdate, [availability, occupation_time, null, id], (err, result) => {
+                                    if (err) {
+                                        res.status(400).json({err});
+                                    }
+                                    else {
+                                        res.status(200).json(result);
+                                    }
+                                });
+                            }
+                        }
                     }
                 });
             }
