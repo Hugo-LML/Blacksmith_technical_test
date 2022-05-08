@@ -41,13 +41,26 @@ module.exports.createSpace = (req, res) => {
 module.exports.updateSpace = (req, res) => {
     const id = req.params.id;
     const {availability, occupation_time, user_id} = req.body;
-    const sql = `UPDATE spaces SET availability=?, occupation_time=?, user_id=? WHERE id=?`;
-    db.query(sql, [availability, occupation_time, user_id, id], (err, result) => {
+    const sqlSelect = `SELECT * FROM spaces WHERE user_id=?`;
+    db.query(sqlSelect, [user_id], (err, result) => {
         if (err) {
             res.status(400).json({err});
         }
         else {
-            res.status(200).json(result);
+            if (result[0]) {
+                res.status(400).json({message: 'Vous êtes déjà garé autre part dans le parking'});
+            }
+            else {
+                const sqlUpdate = `UPDATE spaces SET availability=?, occupation_time=?, user_id=? WHERE id=?`;
+                db.query(sqlUpdate, [availability, occupation_time, user_id, id], (err, result) => {
+                    if (err) {
+                        res.status(400).json({err});
+                    }
+                    else {
+                        res.status(200).json(result);
+                    }
+                });
+            }
         }
     });
 }
