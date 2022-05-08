@@ -1,10 +1,15 @@
 .researchContainer {
-    width: 60%;
-    background-color: cyan;
+    width: 55%;
     .stageSelection {
+        margin: 0 0 20px;
         display: flex;
         align-items: center;
+        p {
+            font-size: 20px;
+        }
         select {
+            font-size: 20px;
+            color: $color-1;
             border: none;
             background-color: transparent;
             appearance: none;
@@ -14,4 +19,7 @@
             }
         }
     }
+    // .cards-container {
+        
+    // }
 }

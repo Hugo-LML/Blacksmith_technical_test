@@ -3,7 +3,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     box-shadow: $shadow;
-    padding: 10px 20px;
+    padding: 10px 50px;
+    margin-bottom: 20px;
     @include phone-format {
         padding: 0 10px;
     }

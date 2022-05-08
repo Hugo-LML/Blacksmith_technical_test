@@ -16,9 +16,17 @@ export const spaceSlice = createSlice({
         },
         getMySpace: (state, action) => {
             state.mySpaceValue = action.payload;
+        },
+        editSpace: (state, action) => {
+            state.spacesValue.forEach(space => {
+                if (space.id === action.payload.id) {
+                    space.availability = 0;
+                    space.user_id = action.payload.user_id;
+                }
+            });
         }
     }
 });
 
-export const { getSpace, getSpaces, getMySpace } = spaceSlice.actions;
+export const { getSpace, getSpaces, getMySpace, editSpace } = spaceSlice.actions;
 export default spaceSlice.reducer;
