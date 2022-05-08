@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UidContext } from '../components/AppContext';
+import SpaceResearch from '../components/SpaceResearch';
 import { logUser } from '../features/user.slice';
 
 const Home = () => {
@@ -12,11 +13,11 @@ const Home = () => {
         <>
             {uid ? (
                 <div className="home-userConnected">
-                    <h1>User connected</h1>
+                    <SpaceResearch />
                 </div>
             ) : (
-                <div className='main'>
-                    <div className="home-userNotConnected">
+                <div className='home-userNotConnected'>
+                    <div className="main">
                         <h1>Parkmanager Corp</h1>
                         <div className="buttons">
                             <NavLink onClick={() => dispatch(logUser(true))} end to='/profil'>

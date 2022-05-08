@@ -6,10 +6,6 @@ const jwt = require('jsonwebtoken');
 const rateLimit = require('./middleware/rateLimit.middleware');
 const auth = require('./middleware/auth.middleware');
 
-const authRoutes = require('./routes/auth.routes');
-const userRoutes = require('./routes/user.routes');
-const spaceRoutes = require('./routes/space.routes');
-
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -23,6 +19,10 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     next();
 });
+
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
+const spaceRoutes = require('./routes/space.routes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);

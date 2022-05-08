@@ -2,7 +2,7 @@ const db = require('../config/database').getDB();
 
 module.exports.getAllUsers = (req, res) => {
     const sql = `SELECT * FROM users`;
-    db.query(sql, [id], (err, result) => {
+    db.query(sql, (err, result) => {
         if (err) {
             res.status(400).json({err});
         }

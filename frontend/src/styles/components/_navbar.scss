@@ -30,15 +30,25 @@ nav {
             align-items: center;
             @include phone-format {
                 background-color: initial;
-                @include filterColor;
             }
             p {
                 font-family: $font-title;
             }
-            .nav-user-pic {
-                width: 30px;
-                height: 30px;
+            .nav-user-pic-container {
+                background-color: #FFF;
+                border-radius: 50%;
+                box-shadow: $shadow;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 cursor: pointer;
+            }
+            .nav-user-pic {
+                width: 20px;
+                height: 20px;
+                @include filterColor;
             }
         }
         a:hover {

@@ -1,13 +1,14 @@
-.main {
+.home-userConnected {
+    display: flex;
+}
+
+.home-userNotConnected {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    // .home-userConnected {
-
-    // }
-    .home-userNotConnected {
+    .main {
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -38,7 +38,9 @@ const Navbar = () => {
                         {width > 768 ? (
                             <p>Mon compte</p>
                         ) : (
-                            <img className='nav-user-pic' src="./img/user-solid.svg" alt="user-pic" />
+                            <div className="nav-user-pic-container">
+                                <img className='nav-user-pic' src="./img/user-solid.svg" alt="user-pic" />
+                            </div>
                         )}
                     </NavLink>
                     <Logout />

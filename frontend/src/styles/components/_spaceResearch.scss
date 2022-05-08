@@ -1,0 +1,17 @@
+.researchContainer {
+    width: 60%;
+    background-color: cyan;
+    .stageSelection {
+        display: flex;
+        align-items: center;
+        select {
+            border: none;
+            background-color: transparent;
+            appearance: none;
+            margin-left: -2.5px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
