@@ -1,0 +1,63 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 50px;
+    padding: 20px 50px;
+    box-shadow: $shadow;
+    background-color: #FFF;
+    position: relative;
+    z-index: 100;
+    .presentation {
+        max-width: 30%;
+        .logo-and-name {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            img {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+            }
+            p {
+                font-family: $font-title;
+                font-size: 24px;
+            }
+        }
+    }
+    .contact {
+        max-width: 30%;
+        .title {
+            font-family: $font-title;
+        }
+        .way-of-contact {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            img {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+            p {
+                cursor: pointer;
+                &:hover {
+                    color: $color-1;
+                }
+            }
+        }
+    }
+    .help {
+        max-width: 30%;
+        .title {
+            font-family: $font-title;
+        }
+        .infos {
+            margin-top: 10px;
+            cursor: pointer;
+            &:hover {
+                color: $color-1;
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UidContext } from '../components/AppContext';
+import Footer from '../components/Footer';
 import MySpace from '../components/MySpace';
 import ParkingInfos from '../components/ParkingInfos';
 import SpaceResearch from '../components/SpaceResearch';
@@ -35,16 +36,20 @@ const Home = () => {
     return (
         <>
             {uid ? (
-                <div className="home-userConnected">
-                    <SpaceResearch />
-                    <div className='aside-cards'>
-                        <MySpace />
-                        <ParkingInfos />
+                <>
+                    <div className="home-userConnected">
+                        <SpaceResearch />
+                        <div className='aside-cards'>
+                            <MySpace />
+                            <ParkingInfos />
+                        </div>
+                        <div id='scroll-to-top' className='scroll-to-top' onClick={topFunction}>
+                            <img src="./img/chevron-up-solid.svg" alt="chevron-up" />
+                        </div>
                     </div>
-                    <div id='scroll-to-top' className='scroll-to-top' onClick={topFunction}>
-                        <img src="./img/chevron-up-solid.svg" alt="chevron-up" />
-                    </div>
-                </div>
+                    <Footer />
+                </>
+                
             ) : (
                 <div className='home-userNotConnected'>
                     <div className="main">
