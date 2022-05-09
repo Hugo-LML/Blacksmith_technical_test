@@ -13,18 +13,29 @@ const MySpace = () => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/space/findSpaceByUser/${uid}`, {withCredentials: true})
             .then(res => dispatch(getMySpace(res.data)))
             .catch(err => console.log(err));
-    }, [])
+
+    }, [uid, dispatch])
 
     return (
         <div className='mySpace-container'>
-            <div className="icon-and-number">
-                <img src="./img/car-solid.svg" alt="car-icon" />
-                {mySpace !== null ? (
-                    <p>{mySpace[0].number}</p>
-                ) : (
-                    <p>Loading</p>
-                )}
-            </div>
+            <p className='title'>Où est ma voiture ?</p>
+            {mySpace !== null ? (
+                <>
+                    <div className="icon-and-number">
+                        <img src="./img/car-solid.svg" alt="car-icon" />
+                        <p>{mySpace[0].number}</p>
+                    </div>
+                    <div className="infos">
+                        <p>Étage numéro {mySpace[0].stage}</p>
+                        <p>Temps d'occupation : {mySpace[0].occupation_time}h</p>
+                    </div>
+                    <div className="parking-map">
+                        <img src="./img/parkingMap.svg" alt="parking-map"/>
+                    </div>
+                </>
+            ) : (
+                <p>Loading</p>
+            )}
         </div>
     );
 };
