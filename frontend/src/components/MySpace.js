@@ -1,25 +1,42 @@
 import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMySpace } from '../features/space.slice';
+import { editSpace, getMySpace } from '../features/space.slice';
 import { UidContext } from './AppContext';
 
 const MySpace = () => {
     const uid = useContext(UidContext);
     const dispatch = useDispatch();
     const mySpace = useSelector(state => state.space.mySpaceValue);
+    const isParked = useSelector(state => state.space.parkedValue);
+
+    const handleLiberation = () => {
+        axios.put(`${process.env.REACT_APP_API_URL}/api/space/${mySpace[0].id}`, {
+            availability: 0,
+            occupation_time: 24,
+            user_id: uid,
+            avaUpdated: 1,
+            occUpdated: 24,
+            useUpdated: null
+        }, {withCredentials: true})
+            .then(res => {
+                const dataObject = {id: mySpace[0].id, availability: 1, user_id: null, parked: false};
+                dispatch(editSpace(dataObject));
+            })
+            .catch(err => console.log(err));
+    }
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/space/findSpaceByUser/${uid}`, {withCredentials: true})
             .then(res => dispatch(getMySpace(res.data)))
             .catch(err => console.log(err));
 
-    }, [uid, dispatch])
+    }, [uid, dispatch, isParked])
 
     return (
         <div className='mySpace-container'>
             <p className='title'>Où est ma voiture ?</p>
-            {mySpace !== null ? (
+            {mySpace && mySpace[0] ? (
                 <>
                     <div className="icon-and-number">
                         <img src="./img/car-solid.svg" alt="car-icon" />
@@ -32,9 +49,13 @@ const MySpace = () => {
                     <div className="parking-map">
                         <img src="./img/parkingMap.svg" alt="parking-map"/>
                     </div>
+                    <button className='free' onClick={handleLiberation}>Libérer la place</button>
                 </>
             ) : (
-                <p>Loading</p>
+                <>
+                    <p className='not-parked'>Vous n'êtes pas encore garé dans notre parking.</p>
+                    <p>Trouvez la place qui vous correspond !</p>
+                </>
             )}
         </div>
     );

@@ -10,15 +10,21 @@ const SpaceCard = ({ space }) => {
     
     const handleReservation = () => {
         axios.put(`${process.env.REACT_APP_API_URL}/api/space/${space.id}`, {
-            availability: 0,
+            availability: 1,
             occupation_time: 24,
-            user_id: uid
+            user_id: null,
+            avaUpdated: 0,
+            occUpdated: 24,
+            useUpdated: uid
         }, {withCredentials: true})
             .then(res => {
-                const dataObject = {id: space.id, user_id: uid};
+                const dataObject = {id: space.id, availability: 0, user_id: uid, parked: true};
                 dispatch(editSpace(dataObject));
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                alert("Vous devez d'abord libérer votre place");
+            }); 
     }
 
     return (

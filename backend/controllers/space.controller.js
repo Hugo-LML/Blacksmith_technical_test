@@ -40,7 +40,7 @@ module.exports.createSpace = (req, res) => {
 
 module.exports.updateSpace = (req, res) => {
     const id = req.params.id;
-    const {availability, occupation_time, user_id} = req.body;
+    const {availability, occupation_time, user_id, avaUpdated, occUpdated, useUpdated} = req.body;
     const sqlSelect = `SELECT * FROM spaces WHERE user_id=?`;
     db.query(sqlSelect, [user_id], (err, result) => {
         if (err) {
@@ -63,7 +63,7 @@ module.exports.updateSpace = (req, res) => {
                         else {
                             const sqlUpdate = `UPDATE spaces SET availability=?, occupation_time=?, user_id=? WHERE id=?`;
                             if (result[0] && result[0].user_id === null) {
-                                db.query(sqlUpdate, [availability, occupation_time, user_id, id], (err, result) => {
+                                db.query(sqlUpdate, [avaUpdated, occUpdated, useUpdated, id], (err, result) => {
                                     if (err) {
                                         res.status(400).json({err});
                                     }
@@ -73,7 +73,7 @@ module.exports.updateSpace = (req, res) => {
                                 });
                             }
                             else if (result[0] && result[0].user_id === user_id) {
-                                db.query(sqlUpdate, [availability, occupation_time, null, id], (err, result) => {
+                                db.query(sqlUpdate, [avaUpdated, occUpdated, useUpdated, id], (err, result) => {
                                     if (err) {
                                         res.status(400).json({err});
                                     }

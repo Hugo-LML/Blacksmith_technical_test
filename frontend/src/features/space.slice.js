@@ -5,7 +5,8 @@ export const spaceSlice = createSlice({
     initialState: {
         spaceValue: null,
         spacesValue: null,
-        mySpaceValue: null
+        mySpaceValue: null,
+        parkedValue: null
     },
     reducers: {
         getSpace: (state, action) => {
@@ -20,10 +21,11 @@ export const spaceSlice = createSlice({
         editSpace: (state, action) => {
             state.spacesValue.forEach(space => {
                 if (space.id === action.payload.id) {
-                    space.availability = 0;
+                    space.availability = action.payload.availability;
                     space.user_id = action.payload.user_id;
                 }
             });
+            state.parkedValue = action.payload.parked;
         }
     }
 });
