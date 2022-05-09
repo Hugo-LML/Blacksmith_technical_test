@@ -24,6 +24,9 @@
     .infos {
         display: flex;
         flex-direction: column;
+        p:first-child {
+            margin-bottom: 10px;
+        }
     }
     .reservation {
         padding: 10px;

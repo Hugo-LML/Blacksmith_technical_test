@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UidContext } from '../components/AppContext';
 import MySpace from '../components/MySpace';
+import ParkingInfos from '../components/ParkingInfos';
 import SpaceResearch from '../components/SpaceResearch';
 import { logUser } from '../features/user.slice';
 
@@ -15,7 +16,10 @@ const Home = () => {
             {uid ? (
                 <div className="home-userConnected">
                     <SpaceResearch />
-                    <MySpace />
+                    <div className='aside-cards'>
+                        <MySpace />
+                        <ParkingInfos />
+                    </div>
                 </div>
             ) : (
                 <div className='home-userNotConnected'>
