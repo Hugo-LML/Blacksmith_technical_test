@@ -30,6 +30,7 @@ const Navbar = () => {
     return (
         <nav>
             <NavLink end to="/">
+                <img src="./img/square-parking-solid.svg" alt="logo" />
                 <h1>Parkmanager Corp</h1>
             </NavLink>
             {uid && userData !== null ? (

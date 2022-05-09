@@ -9,7 +9,7 @@ const Footer = () => {
                     <p>Parkmanager Corp</p>
                 </div>
                 <p className='description'>Parkmanager Corp est une jeune entreprise qui a pour but de simplifier
-                l'utilisation des parkings</p>
+                l'utilisation des parkings.</p>
             </div>
             <div className='contact'>
                 <p className='title'>Contact</p>
