@@ -5,6 +5,26 @@
     .aside-cards {
         width: 35%;
     }
+    .scroll-to-top {
+        visibility: hidden;
+        opacity: 0;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding: 10px;
+        background-color: #FFF;
+        box-shadow: $shadow;
+        cursor: pointer;
+        transition: 0.3s;
+        img {
+            @include filterColor;
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 
 .home-userNotConnected {

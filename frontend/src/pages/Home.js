@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UidContext } from '../components/AppContext';
@@ -11,6 +11,27 @@ const Home = () => {
     const uid = useContext(UidContext);
     const dispatch = useDispatch();
 
+    const scrollFunction = () => {
+        if (document.body.scrollTop > window.innerHeight || document.documentElement.scrollTop > window.innerHeight) {
+            document.getElementById('scroll-to-top').style.visibility = "visible";
+            document.getElementById('scroll-to-top').style.opacity = "1";
+        }
+        else {
+            document.getElementById('scroll-to-top').style.visibility = "hidden";
+            document.getElementById('scroll-to-top').style.opacity = "0";
+        }
+    }
+
+    const topFunction = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", scrollFunction);
+        return () => window.removeEventListener("scroll", scrollFunction);
+    }, []);
+
     return (
         <>
             {uid ? (
@@ -19,6 +40,9 @@ const Home = () => {
                     <div className='aside-cards'>
                         <MySpace />
                         <ParkingInfos />
+                    </div>
+                    <div id='scroll-to-top' className='scroll-to-top' onClick={topFunction}>
+                        <img src="./img/chevron-up-solid.svg" alt="chevron-up" />
                     </div>
                 </div>
             ) : (
