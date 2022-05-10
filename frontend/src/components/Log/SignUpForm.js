@@ -37,7 +37,8 @@ const SignUpForm = () => {
                 last_name: lastName,
                 phone,
                 email,
-                password
+                password,
+                admin: 0
             })
                 .then(res => setFormSubmit(true))
                 .catch(err => {

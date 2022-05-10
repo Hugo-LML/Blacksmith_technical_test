@@ -4,11 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports.signUp = async (req, res) => {
-    const {first_name, last_name, phone, email, password} = req.body;
+    let {first_name, last_name, phone, email, password, admin} = req.body;
+    if (password === process.env.ADMIN_PASSWORD) {
+        admin = 1;
+    }
     const salt = await bcrypt.genSalt(10);
     const cryptedPassword = await bcrypt.hash(password, salt);
-    const sql = `INSERT INTO users (first_name, last_name, phone, email, password) VALUES (?, ?, ?, ?, ?)`;
-    db.query(sql, [first_name, last_name, phone, email, cryptedPassword], (err, result) => {
+    const sql = `INSERT INTO users (first_name, last_name, phone, email, password, admin) VALUES (?, ?, ?, ?, ?, ?)`;
+    db.query(sql, [first_name, last_name, phone, email, cryptedPassword, admin], (err, result) => {
         if (err) {
             console.log(err);
             res.status(400).json({errorEmail: 'Cette adresse mail est déjà utilisée', errorPassword: '', errorPhone: ''});
