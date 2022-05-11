@@ -26,9 +26,12 @@ export const spaceSlice = createSlice({
                 }
             });
             state.parkedValue = action.payload.parked;
+        },
+        addPlace: (state, action) => {
+            state.spacesValue.push(action.payload);
         }
     }
 });
 
-export const { getSpace, getSpaces, getMySpace, editSpace } = spaceSlice.actions;
+export const { getSpace, getSpaces, getMySpace, editSpace, addPlace } = spaceSlice.actions;
 export default spaceSlice.reducer;

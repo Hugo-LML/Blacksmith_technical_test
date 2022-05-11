@@ -26,9 +26,9 @@ module.exports.getSpace = (req, res) => {
 }
 
 module.exports.createSpace = (req, res) => {
-    const {number, stage} = req.body;
-    const sql = `INSERT INTO spaces (number, stage) VALUES (?, ?)`;
-    db.query(sql, [number, stage], (err, result) => {
+    const {number, stage, occupation_time} = req.body;
+    const sql = `INSERT INTO spaces (number, stage, occupation_time) VALUES (?, ?, ?)`;
+    db.query(sql, [number, stage, occupation_time], (err, result) => {
         if (err) {
             res.status(400).json({err});
         }
