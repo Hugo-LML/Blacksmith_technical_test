@@ -31,14 +31,14 @@ export const userSlice = createSlice({
             })
         },
         deleteUser: (state, action) => {
-            state.getUserValue = null;
+            state.userValue = null;
             const arrayDelete = [];
-            state.getUsersValue.forEach(user => {
+            state.usersValue.forEach(user => {
                 if (user.id !== action.payload) {
                     arrayDelete.push(user);
                 }
             });
-            state.getUsersValue = arrayDelete;
+            state.usersValue = arrayDelete;
         },
         logUser: (state, action) => {
             state.userSignUpOrIn = action.payload;
