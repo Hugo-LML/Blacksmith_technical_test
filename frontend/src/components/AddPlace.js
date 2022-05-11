@@ -22,6 +22,9 @@ const AddPlace = ({ displayForm, setDisplayForm }) => {
         if (pattern.test(number) || pattern.test(stage) || pattern.test(occupation_time)) {
             alert('Rentrez un nombre');
         }
+        if (parseInt(stage) > 4 || parseInt(stage) <= 0) {
+            alert('Les étages sont les suivants : 1, 2, 3, 4');
+        }
         else {
             axios.post(`${process.env.REACT_APP_API_URL}/api/space`, {
                 number,

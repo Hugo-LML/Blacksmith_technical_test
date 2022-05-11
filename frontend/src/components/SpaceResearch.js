@@ -41,6 +41,7 @@ const SpaceResearch = () => {
                     <option value="1">au premier étage</option>
                     <option value="2">au deuxième étage</option>
                     <option value="3">au troisième étage</option>
+                    <option value="4">au quatrième étage</option>
                 </select>
             </div>
             <div className="cards-container">
