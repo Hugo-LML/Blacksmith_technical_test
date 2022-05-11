@@ -6,6 +6,12 @@
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: $shadow;
+    @include tablet-format {
+        padding: 10px;
+    }
+    @include phone-format {
+        flex-direction: column;
+    }
     .icon-and-number {
         display: flex;
         align-items: center;
@@ -13,19 +19,34 @@
             width: 36px;
             height: 36px;
             margin-right: 20px;
-            
+            @include tablet-format {
+                margin-right: 10px;
+                width: 24px;
+                height: 24px;
+            }
         }
         p {
             font-family: $font-title;
             font-weight: 700;
             font-size: 36px;
+            @include phone-format {
+                font-size: 24px;
+            }
         }
     }
     .infos {
         display: flex;
         flex-direction: column;
+        text-align: center;
+        @include phone-format {
+            //min-width: 60%;
+        }
         p:first-child {
             margin-bottom: 10px;
+            @include phone-format {
+                margin-top: 10px;
+                margin-bottom: 6px;
+            }
         }
     }
     .reservation {
@@ -37,6 +58,9 @@
         color: #FFF;
         cursor: pointer;
         transition: 0.3s;
+        @include phone-format {
+            margin-top: 10px;
+        }
         &:hover {
             box-shadow: $shadow;
         }

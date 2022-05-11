@@ -11,6 +11,12 @@
     border-radius: 10px;
     box-shadow: $shadow;
     z-index: 1000;
+    @include tablet-format {
+        width: 50%; 
+    }
+    @include phone-format {
+        width: 95%;
+    }
     .close {
         position: absolute;
         top: 20px;

@@ -8,8 +8,17 @@ footer {
     background-color: #FFF;
     position: relative;
     z-index: 99;
+    @include phone-format {
+        margin-top: 20px;
+        padding: 20px 10px;
+        flex-direction: column;
+    }
     .presentation {
         max-width: 30%;
+        @include phone-format {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
         .logo-and-name {
             display: flex;
             align-items: center;
@@ -18,6 +27,10 @@ footer {
                 width: 50px;
                 height: 50px;
                 margin-right: 10px;
+                @include phone-format {
+                    width: 40px;
+                    height: 40px;
+                }
             }
             p {
                 font-family: $font-title;
@@ -27,6 +40,10 @@ footer {
     }
     .contact {
         max-width: 30%;
+        @include phone-format {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
         .title {
             font-family: $font-title;
         }
@@ -49,6 +66,9 @@ footer {
     }
     .help {
         max-width: 30%;
+        @include phone-format {
+            max-width: 100%;
+        }
         .title {
             font-family: $font-title;
         }

@@ -2,8 +2,18 @@
     display: flex;
     justify-content: space-between;
     padding: 0 50px;
+    @include phone-format {
+        padding: 0 10px;
+        flex-direction: column-reverse;
+    }
     .aside-cards {
         width: 35%;
+        @include tablet-format {
+            width: 37.5%;
+        }
+        @include phone-format {
+            width: 100%;
+        }
     }
     .scroll-to-top {
         visibility: hidden;
@@ -19,6 +29,11 @@
         box-shadow: $shadow;
         cursor: pointer;
         transition: 0.3s;
+        @include phone-format {
+            right: 10px;
+            width: 40px;
+            height: 40px;
+        }
         img {
             @include filterColor;
             width: 100%;
@@ -39,6 +54,11 @@
         background-color: $color-1;
         box-shadow: $shadow;
         cursor: pointer;
+        @include phone-format {
+            right: 10px;
+            width: 40px;
+            height: 40px;
+        }
         &:hover img {
             transform: rotate(180deg);
         }
