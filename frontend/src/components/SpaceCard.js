@@ -11,10 +11,10 @@ const SpaceCard = ({ space }) => {
     const handleReservation = () => {
         axios.put(`${process.env.REACT_APP_API_URL}/api/space/${space.id}`, {
             availability: 1,
-            occupation_time: 24,
+            occupation_time: space.occupation_time,
             user_id: null,
             avaUpdated: 0,
-            occUpdated: 24,
+            occUpdated: space.occupation_time,
             useUpdated: uid
         }, {withCredentials: true})
             .then(res => {

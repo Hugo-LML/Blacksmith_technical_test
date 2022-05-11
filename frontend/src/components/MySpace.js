@@ -13,10 +13,10 @@ const MySpace = () => {
     const handleLiberation = () => {
         axios.put(`${process.env.REACT_APP_API_URL}/api/space/${mySpace[0].id}`, {
             availability: 0,
-            occupation_time: 24,
+            occupation_time: mySpace[0].occupation_time,
             user_id: uid,
             avaUpdated: 1,
-            occUpdated: 24,
+            occUpdated: mySpace[0].occupation_time,
             useUpdated: null
         }, {withCredentials: true})
             .then(res => {

@@ -19,7 +19,7 @@ const ParkingInfos = () => {
             mySum += listOccupation[i];
         }
         mySum /= array.length;
-        return mySum;
+        return Math.round(mySum * 10) / 10;
     }
 
     useEffect(() => {
