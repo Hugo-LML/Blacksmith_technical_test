@@ -1,4 +1,5 @@
 const db = require('../config/database').getDB();
+const validator = require('validator');
 
 module.exports.getAllUsers = (req, res) => {
     const sql = `SELECT * FROM users`;
@@ -32,6 +33,9 @@ module.exports.updateUser = (req, res) => {
     db.query(sql, [first_name, last_name, phone, id], (err, result) => {
         if (err) {
             res.status(400).json({err});
+        }
+        else if (!validator.isMobilePhone(phone)) {
+            res.status(400).json({errorPhone: 'Rentrez un numéro de téléphone valide'});
         }
         else {
             res.status(200).json(result);

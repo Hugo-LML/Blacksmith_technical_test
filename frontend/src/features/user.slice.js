@@ -15,14 +15,18 @@ export const userSlice = createSlice({
             state.usersValue = action.payload;
         },
         editUser: (state, action) => {
-            state.getUserValue.forEach(user => {
+            state.userValue.forEach(user => {
                 if (user.id === action.payload.id) {
-                    user.pseudo = action.payload.pseudo;
+                    user.first_name = action.payload.firstName;
+                    user.last_name = action.payload.lastName;
+                    user.phone = action.payload.phone;
                 }
             })
-            state.getUsersValue.forEach(user => {
+            state.usersValue.forEach(user => {
                 if (user.id === action.payload.id) {
-                    user.pseudo = action.payload.pseudo;
+                    user.first_name = action.payload.firstName;
+                    user.last_name = action.payload.lastName;
+                    user.phone = action.payload.phone;
                 }
             })
         },
