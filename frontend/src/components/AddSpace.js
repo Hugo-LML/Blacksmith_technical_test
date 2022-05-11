@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPlace, getSpaces } from '../features/space.slice';
+import { addSpace, getSpaces } from '../features/space.slice';
 
-const AddPlace = ({ displayForm, setDisplayForm }) => {
+const AddSpace = ({ displayForm, setDisplayForm }) => {
     const [number, setNumber] = useState('');
     const [stage, setStage] = useState('');
     const [occupation_time, setOccupation_time] = useState('');
@@ -11,7 +11,7 @@ const AddPlace = ({ displayForm, setDisplayForm }) => {
     const spacesData = useSelector(state => state.space.spacesValue);
     const dispatch = useDispatch();
 
-    const handleAddPlace = (e) => {
+    const handleAddSpace = (e) => {
         e.preventDefault();
         
         const numberList = spacesData.map(e => e.number);
@@ -34,7 +34,7 @@ const AddPlace = ({ displayForm, setDisplayForm }) => {
                 .then(res => {
                     axios.get(`${process.env.REACT_APP_API_URL}/api/space`, {withCredentials: true})
                         .then(res => {
-                            dispatch(addPlace(res.data.at(-1)));
+                            dispatch(addSpace(res.data.at(-1)));
                             setDisplayForm(!displayForm);
                             setStateDisplayForm();
                         }) 
@@ -77,7 +77,7 @@ const AddPlace = ({ displayForm, setDisplayForm }) => {
     }, [dispatch]);
 
     return (
-        <form action="" onSubmit={handleAddPlace} className='add-place-form'>
+        <form action="" onSubmit={handleAddSpace} className='add-place-form'>
             <img src="./img/circle-xmark-solid.svg" alt="close" className='close' onClick={setStateDisplayForm} />
             <p className='title'>Créer une place</p>
             <div className='containerLabelInput'>
@@ -97,4 +97,4 @@ const AddPlace = ({ displayForm, setDisplayForm }) => {
     );
 };
 
-export default AddPlace;
+export default AddSpace;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import AddPlace from '../components/AddPlace';
+import AddSpace from '../components/AddSpace';
 import { UidContext } from '../components/AppContext';
 import Footer from '../components/Footer';
 import MySpace from '../components/MySpace';
@@ -95,7 +95,7 @@ const Home = () => {
                                 <img src="./img/chevron-up-solid.svg" alt="chevron-up" />
                             </div>
                         )}
-                        {displayForm && <AddPlace displayForm={displayForm} setDisplayForm={setDisplayForm} />}
+                        {displayForm && <AddSpace displayForm={displayForm} setDisplayForm={setDisplayForm} />}
                         <div className='blur-everything' ref={blurEverything}></div>
                     </div>
                     <Footer />
